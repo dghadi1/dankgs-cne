@@ -8,11 +8,14 @@ A platform for enterprise use can have many components categorized by purpose, a
 The Compute layer comprises of a provisioned node with an operating system reached over an ip address or a hostname
 ### node
 A node can be from any of the following choices
-1. AWS
+1. Packet
 2. Azure
 3. GCE
 4. DigitalOcean
 5. Rpi
+6. Hypervisor
+7. AWS
+
 ### Operating System
 Any linux operating system capable of running containers (or custom built using linuxkit)
 1. Ubuntu
