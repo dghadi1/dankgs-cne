@@ -1,0 +1,34 @@
+cat banner.txt
+echo ""
+echo ""
+echo ""
+echo "Cleaning up previous installation"
+rm -rf .vendor/*
+echo "Setting up Linuxkit"
+git clone https://github.com/linuxkit/linuxkit .vendor/linuxkit
+
+cd .vendor/linuxkit
+make
+make install
+
+cd ../..
+which linuxkit
+linuxkit
+echo ""
+echo ""
+echo ""
+echo "Linuxkit installed!"
+echo ""
+echo ""
+echo "Building kubernetes linuxkit images"
+echo ""
+git clone https://github.com/linuxkit/kubernetes .vendor/kubernetes
+cd .vendor/kubernetes
+make all KUBE_RUNTIME=cri-containerd
+
+echo ""
+echo ""
+echo ""
+
+echo "Booting a single node kubernetes cluster"
+KUBE_MASTER_AUTOINIT="" KUBE_MASTER_UNTAINT=y KUBE_MASTER_MEM=4096 ./boot.sh
